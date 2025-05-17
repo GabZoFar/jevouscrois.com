@@ -3,5 +3,4 @@ main = "./worker-site/index.js"
 compatibility_date = "2025-05-17"
 
 [site]
-bucket = "./"
-entry-point = "worker-site" 
+bucket = "./" 
