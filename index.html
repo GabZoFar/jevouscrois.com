@@ -14,11 +14,11 @@
         <h1 class="main-title">Je Vous Crois</h1>
         
         <div class="video-container">
-            <video id="mainVideo">
+            <video id="mainVideo" autoplay playsinline>
                 <source src="assets/je-vous-crois.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <button id="playButton" class="play-button">
+            <button id="playButton" class="play-button" style="opacity: 0;">
                 <svg viewBox="0 0 24 24" width="64" height="64">
                     <path d="M8 5v14l11-7z" fill="currentColor"/>
                 </svg>
@@ -34,8 +34,44 @@
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('mainVideo');
             const playButton = document.getElementById('playButton');
+            
+            // Function to play video with sound
+            const attemptPlay = () => {
+                video.muted = false;
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started successfully
+                        playButton.style.opacity = '0';
+                    }).catch(error => {
+                        // If autoplay with sound fails, try with muted (which browsers allow)
+                        console.log("Autoplay with sound was prevented:", error);
+                        video.muted = true;
+                        video.play().then(() => {
+                            playButton.style.opacity = '0';
+                        }).catch(e => {
+                            // Even muted autoplay failed, show play button
+                            playButton.style.opacity = '1';
+                        });
+                    });
+                }
+            };
+            
+            // Try to play immediately
+            attemptPlay();
+            
+            // Also try to play on user interaction with the page
+            document.addEventListener('click', () => {
+                if (video.paused || video.muted) {
+                    video.muted = false;
+                    video.play();
+                    playButton.style.opacity = '0';
+                }
+            }, { once: true });
 
             playButton.addEventListener('click', () => {
+                video.muted = false;
                 if (video.paused) {
                     video.play();
                     playButton.style.opacity = '0';
