@@ -4,39 +4,75 @@ Je vous crois.
 
 by Madame Dreams [madamedreams.com]
 
-AI:
+AI: This project is a static website deployed on Cloudflare Workers that displays a full-screen video with a custom play button overlay.
 
-## Structure
+## Features
 
-- `index.html` - Main HTML file with title, GIF and video player
-- `style.css` - Styling for the webpage (includes bold Montserrat 900 font)
-- `assets/` - Directory containing media files
-  - `jevouscrois.gif` - The main GIF file (you need to add this)
-  - `video.mp4` - The video file to be played (you need to add this)
+- Clean, minimalist design
+- Custom video player with overlay play button
+- Responsive layout for mobile and desktop
+- Automatic deployment via GitHub Actions
 
-## How to Use
+## Deployment
 
-1. Place your GIF file at `assets/jevouscrois.gif`
-2. Place your video file at `assets/video.mp4`
-3. If needed, adjust styling in `style.css`
+This site is automatically deployed to Cloudflare Workers when changes are pushed to the main branch.
 
-## Deployment Instructions (Cloudflare Pages)
+### URL
 
-1. Push this code to a GitHub repository
-2. Login to your Cloudflare dashboard
-3. Navigate to "Pages"
-4. Click "Create a project"
-5. Select "Connect to Git"
-6. Choose your GitHub repository with this code
-7. Configure your build settings:
-   - Build command: (leave empty - not required for static sites)
-   - Build output directory: (leave as root)
-8. Click "Save and deploy"
+The site is live at: [jevouscrois.gaabs.workers.dev](https://jevouscrois.gaabs.workers.dev)
 
-After deployment, you'll get a URL like `your-project-name.pages.dev` where your site will be accessible.
+## Development
 
-## Customization
+### Local Setup
 
-- To change the title font or style, edit the `.main-title` style in `style.css`
-- To change the footer text, edit the text inside the `<footer>` tag in `index.html`
-- To modify the overall look and feel, edit the `style.css` file
+1. Clone the repository
+```bash
+git clone https://github.com/GabZoFar/jevouscrois.com.git
+cd jevouscrois.com
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Test locally
+```bash
+npx wrangler dev
+```
+
+### Deployment
+
+The deployment is automated via GitHub Actions. When you push to the main branch, GitHub Actions will:
+1. Check out the code
+2. Install dependencies
+3. Deploy to Cloudflare Workers
+
+## Cloudflare Workers Configuration
+
+This project uses Cloudflare Workers for hosting and includes:
+- Worker script to serve static assets
+- Custom security headers
+- Automatic handling of root path to serve index.html
+
+## GitHub Actions
+
+Deployment is handled by GitHub Actions (see `.github/workflows/deploy.yml`). You need to set up a `CLOUDFLARE_API_TOKEN` in your GitHub repository secrets.
+
+### Creating the API Token
+
+1. Log in to your [Cloudflare dashboard](https://dash.cloudflare.com)
+2. Go to **My Profile** > **API Tokens**
+3. Click **Create Token**
+4. Select **Create Custom Token**
+5. Name: "GitHub Workers Deployment"
+6. Permissions (Add each one individually):
+   - Workers Scripts: Edit
+   - Zone: Workers Routes: Edit
+7. Include All Zones
+8. Create the token and copy it
+9. Add to GitHub repository: Settings > Secrets > Actions as `CLOUDFLARE_API_TOKEN`
+
+## License
+
+© 2025 Made by [GabZoFar](https://github.com/GabZoFar)
