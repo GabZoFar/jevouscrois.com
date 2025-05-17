@@ -101,8 +101,10 @@ footer {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     width: 100%;
-    position: relative;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    z-index: 100;
 }
 
 footer a {
@@ -140,14 +142,14 @@ footer a:hover {
     }
     
     main {
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
     }
 }
 
 @media (max-height: 650px) {
     main {
         padding-top: 1.5rem;
-        padding-bottom: 4rem;
+        padding-bottom: 5rem;
     }
     
     .main-title {
