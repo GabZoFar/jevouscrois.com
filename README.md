@@ -1,4 +1,4 @@
-# Je Vous Crois
+# Je vous crois.
 
 Je vous crois.
 
