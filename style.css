@@ -21,11 +21,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 5rem; /* Account for fixed footer */
 }
 
 .main-title {
@@ -139,19 +137,11 @@ footer a:hover {
         width: 30px;
         height: 30px;
     }
-    
-    main {
-        padding-bottom: 4rem;
-    }
 }
 
 @media (max-height: 650px) {
-    main {
-        padding-top: 1.5rem;
-        padding-bottom: 5rem;
-    }
-    
     .main-title {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
     }
 } 
